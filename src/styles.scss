@@ -1,26 +1,21 @@
 @use '@angular/material' as mat;
+@use 'themes.scss' as themes;
 
-$ahi-theme: mat.define-theme(
-    (
-        color: (
-            primary: mat.$green-palette,
-            tertiary: mat.$azure-palette,
-            use-system-variables: true,
-        ),
-        typography: (
-            use-system-variables: true,
-        ),
-        density: (
-            scale: 0,
-        )
-    )
-);
+@include mat.core();
 
 :root {
-    @include mat.all-component-themes($ahi-theme);
-    @include mat.typography-hierarchy($ahi-theme);
-    @include mat.system-level-colors($ahi-theme);
-    @include mat.system-level-typography($ahi-theme);
+    @include mat.all-component-themes(themes.$dark-theme);
+    @include mat.typography-hierarchy(themes.$dark-theme);
+    @include mat.system-level-typography(themes.$dark-theme);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        @include mat.all-component-colors(themes.$light-theme);
+    }
+    body {
+        background-color: rgb(249, 250, 243);
+    }
 }
 
 html {
