@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path pages --configuration production",
+    "build": "ng build --output-path docs --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postbuild": "echo > pages/.nojekyll"
+    "postbuild": "echo > docs/.nojekyll"
   },
   "private": true,
   "dependencies": {
