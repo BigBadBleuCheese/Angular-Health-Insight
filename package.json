@@ -4,10 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path docs --configuration production",
+    "build": "ng build --output-path docs --configuration production && shx cp -r docs/browser/* docs/ && shx rm -rf docs/browser && echo > docs/.nojekyll",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postbuild": "echo > docs/.nojekyll"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "rxjs": "~7.8.0",
+    "shx": "^0.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
