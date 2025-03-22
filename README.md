@@ -1,7 +1,7 @@
 # Angular Health Insight
 
 This project demonstrates using Angular to display the front end of a health care patient portal.
-To see it working in your web browser, it's been built in Angular production configuration and GitHub Pages for this repo has been configured to [make that build visible](https://bigbadbleucheese.github.io/Angular-Health-Insight/).
+To make it possible to view in your web browser, it's been built in Angular production configuration and GitHub Pages for this repo has been configured to [make that build visible](https://bigbadbleucheese.github.io/Angular-Health-Insight/).
 
 ## ⚠️ Legal Disclaimer
 
