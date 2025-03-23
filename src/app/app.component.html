@@ -5,36 +5,36 @@
         [opened]="!isHandset && isUserLoggedIn()">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item [routerLink]="'/'">
+        <mat-list-item (click)="navigateFromDrawer('/')">
           <mat-icon matListItemIcon>dashboard</mat-icon>
           <div matListItemTitle>Dashboard</div>
           <div matListItemLine>Your health care at a glance.</div>
-        </a>
-        <a mat-list-item [routerLink]="'/appointments'">
+        </mat-list-item>
+        <mat-list-item (click)="navigateFromDrawer('/appointments')">
           <mat-icon matListItemIcon>book_online</mat-icon>
           <div matListItemTitle>Appointments</div>
           <div matListItemLine>We offer in-person and telehealth.</div>
-        </a>
-        <a mat-list-item [routerLink]="'/messages'">
+        </mat-list-item>
+        <mat-list-item (click)="navigateFromDrawer('/messages')">
           <mat-icon matListItemIcon>mail</mat-icon>
           <div matListItemTitle>Messages</div>
           <div matListItemLine>Send notes and receive them from us.</div>
-        </a>
-        <a mat-list-item [routerLink]="'/records'">
+        </mat-list-item>
+        <mat-list-item (click)="navigateFromDrawer('/records')">
           <mat-icon matListItemIcon>receipt_long</mat-icon>
           <div matListItemTitle>Records</div>
           <div matListItemLine>Your medications, allergies, & lab results.</div>
-        </a>
-        <a mat-list-item [routerLink]="'/billing'">
+        </mat-list-item>
+        <mat-list-item (click)="navigateFromDrawer('/billing')">
           <mat-icon matListItemIcon>account_balance</mat-icon>
           <div matListItemTitle>Billing</div>
           <div matListItemLine>Any amounts due for services rendered.</div>
-        </a>
-        <a mat-list-item [routerLink]="'/settings'">
+        </mat-list-item>
+        <mat-list-item (click)="navigateFromDrawer('/settings')">
           <mat-icon matListItemIcon>settings_account_box</mat-icon>
           <div matListItemTitle>Account Settings</div>
           <div matListItemLine>Change the settings for your portal account.</div>
-        </a>
+        </mat-list-item>
         <mat-list-item (click)="logOut()">
           <mat-icon matListItemIcon>logout</mat-icon>
           <div matListItemTitle>Log Out {{ userName }}</div>

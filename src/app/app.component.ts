@@ -34,10 +34,6 @@ export class AppComponent implements OnInit {
   isHandset: boolean = false;
   userName: string = '';
 
-  goToAppointments(): void {
-
-  }
-
   isUserLoggedIn(): boolean {
     return !!this.userName.trim();
   }
@@ -54,6 +50,13 @@ export class AppComponent implements OnInit {
       return;
     }
     this.drawer.close();
+  }
+
+  navigateFromDrawer(route: string): void {
+    this.router.navigate([route]);
+    if (this.isHandset) {
+      this.drawer.close();
+    }
   }
 
   ngOnInit(): void {
