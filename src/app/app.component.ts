@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { UserFacingError } from './user-facing-error';
 @Component({
   selector: 'app-root',
   imports: [
+    RouterModule,
     RouterOutlet,
     MatToolbarModule,
     MatButtonModule,
@@ -32,6 +33,10 @@ export class AppComponent implements OnInit {
   @ViewChild('drawer') drawer!: MatSidenav;
   isHandset: boolean = false;
   userName: string = '';
+
+  goToAppointments(): void {
+
+  }
 
   isUserLoggedIn(): boolean {
     return !!this.userName.trim();
