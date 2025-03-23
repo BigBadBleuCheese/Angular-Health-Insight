@@ -13,12 +13,20 @@ export class SessionService {
     return this.userName;
   }
 
-  logIn(userName: string): void {
+  logIn(userName: string, password: string): void {
     if (this.userName.trim()) {
       throw new UserFacingError('A user is already logged in.');
     }
-    if (!userName.trim()) {
+    userName = userName.trim();
+    if (!userName) {
       throw new UserFacingError('The provided user name was blank.');
+    }
+    password = password.trim();
+    if (!password) {
+      throw new UserFacingError('The provided user name was blank.');
+    }
+    if (userName.split('').reverse().join('').localeCompare(password, undefined, { sensitivity: 'accent' }) !== 0) {
+      throw new UserFacingError('The provided user name or password was incorrect.');
     }
     this.userName = userName;
     this.userNameSubject.next(this.userName);

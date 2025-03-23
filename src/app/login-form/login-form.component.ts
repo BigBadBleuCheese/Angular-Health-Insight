@@ -35,7 +35,7 @@ export class LoginFormComponent {
       if (!this.password.trim()) {
         throw new UserFacingError('The provided password was blank.');
       }
-      this.sessionService.logIn(this.userName);
+      this.sessionService.logIn(this.userName, this.password);
     } catch (e) {
       if (e instanceof UserFacingError) {
         alert(e.message);
