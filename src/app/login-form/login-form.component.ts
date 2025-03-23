@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,10 +25,10 @@ import { UserFacingError } from '../user-facing-error';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
+  private sessionService = inject(SessionService);
+
   userName: string = '';
   password: string = '';
-
-  constructor(private router: Router, private sessionService: SessionService) {}
 
   onSubmit() {
     try {
@@ -43,8 +42,6 @@ export class LoginFormComponent {
       } else {
         alert('Something went wrong. Please contact support.');
       }
-      return;
     }
-    this.router.navigate(['/']);
   }
 }

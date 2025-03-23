@@ -9,8 +9,6 @@ export class SessionService {
   private userName: string = '';
   private userNameSubject = new Subject<any>();
 
-  constructor() { }
-
   getUserName(): string {
     return this.userName;
   }
