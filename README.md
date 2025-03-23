@@ -19,7 +19,7 @@ To make it possible to view in your web browser, it's been built in Angular prod
 
 ### Dependency Injection
 * Application-level service for session management
-* Clear use of Angular's DI system for managing logic and state across components
+* Use of Angular's DI system for managing logic and state across components
 
 ### Reactive Programming
 * Use of RxJS observables for reactive service communication and UI updates
@@ -27,7 +27,7 @@ To make it possible to view in your web browser, it's been built in Angular prod
 
 ### Routing
 * Centralized route configuration with route-driven navigation
-* Clean separation of feature areas through component-based routing
+* Separation of feature areas through component-based routing
 
 ### Forms
 * Template-driven login form demonstrating input handling and validation
