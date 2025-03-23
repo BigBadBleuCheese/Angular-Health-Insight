@@ -23,13 +23,12 @@ import { FooterComponent } from "./footer/footer.component";
     MatIconModule,
     AsyncPipe,
     FooterComponent,
-],
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
-  title: string = 'Angular Health Insight';
   userName: string = '';
 
   constructor(private router: Router, private sessionService: SessionService) {}
@@ -41,13 +40,18 @@ export class AppComponent implements OnInit {
     );
   
   isUserLoggedIn() {
-    return this.userName.trim() !== '';
+    return this.userName.trim();
+  }
+
+  logOut() {
+    this.sessionService.logOut();
+    this.router.navigate(['/login']);
   }
 
   ngOnInit(): void {
     this.userName = this.sessionService.getUserName();
     this.sessionService.onUserNameChanged().subscribe(userName => this.userName = userName);
-    if (this.userName === '') {
+    if (!this.userName) {
       this.router.navigate(['/login']);
       return;
     }

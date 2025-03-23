@@ -1,14 +1,64 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [style.display]="isUserLoggedIn() ? 'block' : 'none'"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item href="#">Link 1</a>
-        <a mat-list-item href="#">Link 2</a>
-        <a mat-list-item href="#">Link 3</a>
+        @if (!isUserLoggedIn()) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>login</mat-icon>
+            <div matListItemTitle>Log In</div>
+            <div matListItemLine>Access your health and medical info.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>how_to_reg</mat-icon>
+            <div matListItemTitle>Register Account</div>
+            <div matListItemLine>You'll need your last bill from us.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>lock_reset</mat-icon>
+            <div matListItemTitle>Forgot Password</div>
+            <div matListItemLine>Get a reset link sent to your email.</div>
+          </mat-list-item>
+        }
+        @if (isUserLoggedIn()) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>dashboard</mat-icon>
+            <div matListItemTitle>Dashboard</div>
+            <div matListItemLine>Your health care at a glance.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>book_online</mat-icon>
+            <div matListItemTitle>Appointments</div>
+            <div matListItemLine>We offer in-person and telehealth.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>mail</mat-icon>
+            <div matListItemTitle>Messages</div>
+            <div matListItemLine>Send notes and receive them from us.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>receipt_long</mat-icon>
+            <div matListItemTitle>Records</div>
+            <div matListItemLine>Your medications, allergies, & lab results.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>account_balance</mat-icon>
+            <div matListItemTitle>Billing</div>
+            <div matListItemLine>Any amounts due for services rendered.</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>settings_account_box</mat-icon>
+            <div matListItemTitle>Account Settings</div>
+            <div matListItemLine>Change the settings for your portal account.</div>
+          </mat-list-item>
+          <mat-list-item (click)="logOut()">
+            <mat-icon matListItemIcon>logout</mat-icon>
+            <div matListItemTitle>Log Out {{ userName }}</div>
+            <div matListItemLine>Return immediately to the log in screen.</div>
+          </mat-list-item>
+        }
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -22,7 +72,7 @@
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
         }
-        <span>{{ title }}</span>
+        <span>Angular Health Insight</span>
       </mat-toolbar>
       <router-outlet />
       <app-footer />

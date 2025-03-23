@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { UserFacingError } from './user-facing-error';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +16,19 @@ export class SessionService {
   }
 
   logIn(userName: string): void {
-    if (this.userName !== '') {
-      throw new Error('A user is already logged in.');
+    if (this.userName.trim()) {
+      throw new UserFacingError('A user is already logged in.');
     }
-    if (userName.trim() === '') {
-      throw new Error('The provided user name was blank.');
+    if (!userName.trim()) {
+      throw new UserFacingError('The provided user name was blank.');
     }
     this.userName = userName;
     this.userNameSubject.next(this.userName);
   }
 
   logOut(): void {
-    if (this.userName === '') {
-      throw new Error('There is no user logged in.');
+    if (!this.userName) {
+      throw new UserFacingError('There is no user logged in.');
     }
     this.userName = '';
     this.userNameSubject.next(this.userName);
