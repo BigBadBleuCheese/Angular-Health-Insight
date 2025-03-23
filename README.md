@@ -29,9 +29,6 @@ To make it possible to view in your web browser, it's been built in Angular prod
 * Centralized route configuration with route-driven navigation
 * Separation of feature areas through component-based routing
 
-### Forms
-* Template-driven login form demonstrating input handling and validation
-
 ## ⚠️ Legal Disclaimer
 
 This project is a **fictional demo application** created for the sole purpose of demonstrating Angular development skills. It is designed to simulate the appearance and functionality of a healthcare portal, but:

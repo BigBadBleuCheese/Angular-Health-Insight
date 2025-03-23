@@ -38,7 +38,7 @@ export class SessionService {
     }
     this.userName = userName;
     this.userNameSubject.next(this.userName);
-    this.messages = MESSAGES;
+    this.messages = structuredClone(MESSAGES);
     this.messagesBehaviorSubject.next(this.messages);
   }
 
