@@ -2,6 +2,7 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -16,6 +17,7 @@ import { UserFacingError } from './user-facing-error';
     RouterModule,
     RouterOutlet,
     MatToolbarModule,
+    MatBadgeModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('drawer') drawer!: MatSidenav;
   isHandset: boolean = false;
+  unreadMessages: number = 3;
   userName: string = '';
 
   isUserLoggedIn(): boolean {
@@ -66,6 +69,7 @@ export class AppComponent implements OnInit {
       this.userName = userName;
       this.router.navigate([this.userName ? '/' : '/login']);
     });
+    this.sessionService.getMessages().subscribe(messages => this.unreadMessages = messages.filter(message => !message.isRead).length);
     if (!this.userName) {
       this.router.navigate(['/login']);
       return;

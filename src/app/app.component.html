@@ -10,27 +10,27 @@
           <div matListItemTitle>Dashboard</div>
           <div matListItemLine>Your health care at a glance.</div>
         </mat-list-item>
-        <mat-list-item (click)="navigateFromDrawer('/appointments')">
+        <mat-list-item disabled>
           <mat-icon matListItemIcon>book_online</mat-icon>
           <div matListItemTitle>Appointments</div>
           <div matListItemLine>We offer in-person and telehealth.</div>
         </mat-list-item>
         <mat-list-item (click)="navigateFromDrawer('/messages')">
-          <mat-icon matListItemIcon>mail</mat-icon>
+          <mat-icon matListItemIcon [matBadge]="unreadMessages" [matBadgeHidden]="!unreadMessages">mail</mat-icon>
           <div matListItemTitle>Messages</div>
           <div matListItemLine>Send notes and receive them from us.</div>
         </mat-list-item>
-        <mat-list-item (click)="navigateFromDrawer('/records')">
+        <mat-list-item disabled>
           <mat-icon matListItemIcon>receipt_long</mat-icon>
           <div matListItemTitle>Records</div>
           <div matListItemLine>Your medications, allergies, & lab results.</div>
         </mat-list-item>
-        <mat-list-item (click)="navigateFromDrawer('/billing')">
+        <mat-list-item disabled>
           <mat-icon matListItemIcon>account_balance</mat-icon>
           <div matListItemTitle>Billing</div>
           <div matListItemLine>Any amounts due for services rendered.</div>
         </mat-list-item>
-        <mat-list-item (click)="navigateFromDrawer('/settings')">
+        <mat-list-item disabled>
           <mat-icon matListItemIcon>settings_account_box</mat-icon>
           <div matListItemTitle>Account Settings</div>
           <div matListItemLine>Change the settings for your portal account.</div>

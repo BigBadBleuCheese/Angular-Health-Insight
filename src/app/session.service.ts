@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Message } from './Message';
+import { MESSAGES } from './mock-messages';
 import { UserFacingError } from './user-facing-error';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
+  private messages: Message[] = [];
+  private messagesBehaviorSubject = new BehaviorSubject<Message[]>(this.messages);
   private userName: string = '';
   private userNameSubject = new Subject<any>();
+
+  getMessages(): Observable<Message[]> {
+    return this.messagesBehaviorSubject.asObservable();
+  }
 
   getUserName(): string {
     return this.userName;
@@ -30,6 +38,8 @@ export class SessionService {
     }
     this.userName = userName;
     this.userNameSubject.next(this.userName);
+    this.messages = MESSAGES;
+    this.messagesBehaviorSubject.next(this.messages);
   }
 
   logOut(): void {
@@ -38,6 +48,19 @@ export class SessionService {
     }
     this.userName = '';
     this.userNameSubject.next(this.userName);
+    this.messages = [];
+    this.messagesBehaviorSubject.next(this.messages);
+  }
+
+  markMessageAsRead(messageId: number): void {
+    const possibleMessages = this.messages.filter(message => message.id == messageId);
+    if (possibleMessages.length - 1)
+      throw new UserFacingError('The specified message could not be found.');
+    const message = possibleMessages[0];
+    if (message.isRead)
+      throw new UserFacingError('The message is already marked as read.');
+    message.isRead = true;
+    this.messagesBehaviorSubject.next(this.messages);
   }
 
   onUserNameChanged(): Observable<any> {
